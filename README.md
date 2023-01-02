@@ -1,7 +1,7 @@
 # VR-Lab
 
 Following this tutorial  
-01 - How to Make VR Games in 2022 - Updated Unity VR Tutorial  
-https://www.youtube.com/watch?v=yxMzAw2Sg5w&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA
+02 - How to ANIMATE Hands in VR - Unity XR Beginner Tutorial (New Input System)
+https://www.youtube.com/watch?v=DxKWq7z4Xao&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=2
 
-*Basic Locomotion w/ Grab Interactable Cube*
+*Animate hands using model from https://www.patreon.com/posts/free-oculus-vr-46544401*
