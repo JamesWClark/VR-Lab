@@ -8,6 +8,7 @@ public class Hand : MonoBehaviour
 {
     public float speed;
     Animator animator;
+    SkinnedMeshRenderer mesh;
     private float gripTarget;
     private float gripCurrent;
     private float triggerTarget;
@@ -16,9 +17,9 @@ public class Hand : MonoBehaviour
     private string animatorTriggerParam = "Trigger";
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         animator = GetComponent<Animator>();
+        mesh = GetComponentInChildren<SkinnedMeshRenderer>();
     }
 
     // Update is called once per frame
@@ -45,5 +46,9 @@ public class Hand : MonoBehaviour
             animator.SetFloat(animatorTriggerParam, triggerCurrent);
         }
 
+    }
+
+    public void ToggleVisibility() {
+        mesh.enabled = !mesh.enabled;
     }
 }
