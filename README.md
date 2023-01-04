@@ -1,7 +1,7 @@
 # VR-Lab
 
 Following this tutorial  
-02 - How to ANIMATE Hands in VR - Unity XR Beginner Tutorial (New Input System)
-https://www.youtube.com/watch?v=DxKWq7z4Xao&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=2
+03 - UI Using Unity XR Interaction Toolkit | How to Make a User Interface That Works in VR  
+https://www.youtube.com/watch?v=BZt74PVb7sM&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=4  
 
-*Animate hands using model from https://www.patreon.com/posts/free-oculus-vr-46544401*
+*Make a canvas with UI controls, then put in in a grabbable tablet.*
