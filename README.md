@@ -1,7 +1,8 @@
 # VR-Lab
 
 Following this tutorial  
-03 - UI Using Unity XR Interaction Toolkit | How to Make a User Interface That Works in VR  
-https://www.youtube.com/watch?v=BZt74PVb7sM&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=4  
+05 - How to Do Continuous Movement in Unity VR with OpenXR
+https://www.youtube.com/watch?v=_Zrde_WTaiI&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=5  
 
-*Make a canvas with UI controls, then put in in a grabbable tablet.*
+*Continuous movement over and into ProBuilder structures and 3D game objects. Step up, step over, step on.*
+
