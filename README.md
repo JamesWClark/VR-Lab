@@ -1,8 +1,8 @@
 # VR-Lab
 
 Following this tutorial  
-05 - How to Do Continuous Movement in Unity VR with OpenXR  
-https://www.youtube.com/watch?v=_Zrde_WTaiI&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=5  
+11 - How to Make Physics-Based Hands in Unity XR  
+https://www.youtube.com/watch?v=RwGIyRy-Lss&list=PLwz27aQG0IIINJb3mfDb3subZ6j8VdtEA&index=12 
 
-*Continuous movement over and into ProBuilder structures and 3D game objects. Step up, step over, step on.*
+*Make the hands collide with objects, not pass through them*
 
