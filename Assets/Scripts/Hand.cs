@@ -6,49 +6,90 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Hand : MonoBehaviour
 {
-    public float speed;
-    Animator animator;
-    SkinnedMeshRenderer mesh;
-    private float gripTarget;
-    private float gripCurrent;
-    private float triggerTarget;
-    private float triggerCurrent;
-    private string animatorGripParam = "Grip";
-    private string animatorTriggerParam = "Trigger";
+    // Animation
+    [SerializeField] private float animationSpeed;
+    private Animator _animator;
+    private SkinnedMeshRenderer _mesh;
+    private float _gripTarget;
+    private float _gripCurrent;
+    private float _triggerTarget;
+    private float _triggerCurrent;
+    private const string AnimatorGripParam = "Grip";
+    private const string AnimatorTriggerParam = "Trigger";
+    private static readonly int Grip = Animator.StringToHash(AnimatorGripParam);
+    private static readonly int Trigger = Animator.StringToHash(AnimatorTriggerParam);
+
+    // Physics Movement
+    [SerializeField] private GameObject followObject;
+    [SerializeField] private float followSpeed = 30f;
+    [SerializeField] private float rotateSpeed = 100f;
+    [SerializeField] private Vector3 positionOffset;
+    [SerializeField] private Vector3 rotationOffset;
+    private Transform _followTarget;
+    private Rigidbody _body;
+
 
     // Start is called before the first frame update
     void Start() {
-        animator = GetComponent<Animator>();
-        mesh = GetComponentInChildren<SkinnedMeshRenderer>();
+        // Animation
+        _animator = GetComponent<Animator>();
+        _mesh = GetComponentInChildren<SkinnedMeshRenderer>();
+
+        // Physics Movement
+        _followTarget = followObject.transform;
+        _body = GetComponent<Rigidbody>();
+        _body.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        _body.interpolation = RigidbodyInterpolation.Interpolate;
+        _body.mass = 20f;
+
+        // Teleport hands
+        _body.position = _followTarget.position;
+        _body.rotation = _followTarget.rotation;
     }
 
     // Update is called once per frame
     void Update()
     {
         AnimateHand();
+
+        PhysicsMove();
+    }
+
+    private void PhysicsMove() {
+
+        // Position
+        var positionWithOffset = _followTarget.position + positionOffset;
+        var distance = Vector3.Distance(positionWithOffset, transform.position);
+        _body.velocity = (positionWithOffset - transform.position).normalized * (followSpeed * distance);
+
+        // Rotation
+        var rotationWithOffset = _followTarget.rotation * Quaternion.Euler(rotationOffset);
+        var q = rotationWithOffset * Quaternion.Inverse(_body.rotation);
+        q.ToAngleAxis(out float angle, out Vector3 axis);
+        _body.angularVelocity = angle * (axis * Mathf.Deg2Rad * rotateSpeed);
     }
 
     internal void SetGrip(float v) {
-        gripTarget = v;
+        _gripTarget = v;
     }
 
     internal void SetTrigger(float v) {
-        triggerTarget = v;
+        _triggerTarget = v;
     }
 
     void AnimateHand() {
-        if(gripCurrent != gripTarget) {
-            gripCurrent = Mathf.MoveTowards(gripCurrent, gripTarget, Time.deltaTime * speed);
-            animator.SetFloat(animatorGripParam, gripCurrent);
+        if(_gripCurrent != _gripTarget) {
+            _gripCurrent = Mathf.MoveTowards(_gripCurrent, _gripTarget, Time.deltaTime * animationSpeed);
+            _animator.SetFloat(AnimatorGripParam, _gripCurrent);
         }
-        if(triggerCurrent != triggerTarget) {
-            triggerCurrent = Mathf.MoveTowards(triggerCurrent, triggerTarget, Time.deltaTime * speed);
-            animator.SetFloat(animatorTriggerParam, triggerCurrent);
+        if(_triggerCurrent != _triggerTarget) {
+            _triggerCurrent = Mathf.MoveTowards(_triggerCurrent, _triggerTarget, Time.deltaTime * animationSpeed);
+            _animator.SetFloat(AnimatorTriggerParam, _triggerCurrent);
         }
 
     }
 
     public void ToggleVisibility() {
-        mesh.enabled = !mesh.enabled;
+        _mesh.enabled = !_mesh.enabled;
     }
 }
